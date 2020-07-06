@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             xmlns:tools="http://schemas.android.com/tools"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="match_parent">
+
+  <EditText
+    android:id="@+id/edittext_interval_start"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="8dp"
+    android:layout_marginTop="8dp"
+    android:ems="10"
+    android:inputType="number"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+
+  <EditText
+    android:id="@+id/edittext_interval_end"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="8dp"
+    android:layout_marginTop="8dp"
+    android:ems="10"
+    android:inputType="number"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/edittext_interval_start" />
+
+  <TextView
+    android:id="@+id/textview_interval_start"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="8dp"
+    android:text="Interval Start"
+    app:layout_constraintBottom_toBottomOf="@+id/edittext_interval_start"
+    app:layout_constraintEnd_toStartOf="@+id/edittext_interval_start"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="@+id/edittext_interval_start" />
+
+  <TextView
+    android:id="@+id/textview_interval_end"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="8dp"
+    android:text="Interval End"
+    app:layout_constraintBottom_toBottomOf="@+id/edittext_interval_end"
+    app:layout_constraintEnd_toStartOf="@+id/edittext_interval_end"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="@+id/edittext_interval_end" />
+
+  <Button
+    android:id="@+id/button_reset"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="8dp"
+    android:layout_marginTop="8dp"
+    android:text="Reset"
+    app:layout_constraintEnd_toStartOf="@+id/guideline_center"
+    app:layout_constraintTop_toBottomOf="@+id/spinner_timezone" />
+
+  <Button
+    android:id="@+id/button_query"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="8dp"
+    android:text="Query"
+    app:layout_constraintStart_toStartOf="@+id/guideline_center"
+    app:layout_constraintTop_toBottomOf="@+id/spinner_timezone" />
+
+  <Spinner
+    android:id="@+id/spinner_timezone"
+    android:layout_width="213dp"
+    android:layout_height="40dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginTop="8dp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/edittext_interval_end" />
+
+  <TextView
+    android:id="@+id/textview_timezone"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="8dp"
+    android:text="Timezone"
+    app:layout_constraintBottom_toBottomOf="@+id/spinner_timezone"
+    app:layout_constraintEnd_toStartOf="@+id/spinner_timezone"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="@+id/spinner_timezone" />
+
+  <androidx.constraintlayout.widget.Guideline
+    android:id="@+id/guideline_center"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    app:layout_constraintGuide_percent=".5" />
+</androidx.constraintlayout.widget.ConstraintLayout>

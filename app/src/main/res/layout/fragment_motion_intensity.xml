@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Motion level chart -->
+<androidx.cardview.widget.CardView
+    android:id="@+id/motion_chart_card"
+    style="@style/ChartCardStyle"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout style="@style/ChartLayoutStyle">
+
+        <com.atakmap.android.pulsetool.plugin.ui.sync.MotionIntensityChart
+            android:id="@+id/motion_intensity_graph"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_marginTop="15dp"/>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

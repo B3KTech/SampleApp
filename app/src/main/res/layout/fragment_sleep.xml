@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+  <ScrollView
+      android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              tools:layout_editor_absoluteX="0dp"
+              tools:layout_editor_absoluteY="0dp">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginLeft="5dp"
+                  android:layout_marginRight="5dp"
+                  android:keepScreenOn="true"
+                  android:orientation="vertical">
+
+      <!-- Sleep chart -->
+      <androidx.cardview.widget.CardView
+          android:id="@+id/sleep_chart_card"
+          style="@style/ChartCardStyle"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent">
+
+        <LinearLayout style="@style/ChartLayoutStyle">
+
+          <TextView
+              android:id="@+id/sleep_text"
+              style="@style/ChartHeadingStyle"
+              android:text="@string/sleep_graph_label"/>
+
+          <com.atakmap.android.pulsetool.plugin.ui.sync.SleepResultChart
+              android:id="@+id/sleep_level_graph"
+              android:layout_width="match_parent"
+              android:layout_height="200dp"
+              android:layout_marginTop="15dp"/>
+        </LinearLayout>
+      </androidx.cardview.widget.CardView>
+
+      <!-- Motion level chart -->
+      <androidx.cardview.widget.CardView
+          android:id="@+id/motion_chart_card"
+          style="@style/ChartCardStyle"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent">
+
+        <LinearLayout style="@style/ChartLayoutStyle">
+
+          <TextView
+              android:id="@+id/motion_text"
+              style="@style/ChartHeadingStyle"
+              android:text="@string/motion_level_graph_label"/>
+
+          <com.atakmap.android.pulsetool.plugin.ui.sync.MotionIntensityChart
+              android:id="@+id/raw_motion_graph"
+              android:layout_width="match_parent"
+              android:layout_height="200dp"
+              android:layout_marginTop="15dp"/>
+        </LinearLayout>
+      </androidx.cardview.widget.CardView>
+
+      <TextView
+              android:id="@+id/start_text"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="20dp"
+              android:text=""
+              android:textAlignment="center"
+              android:textSize="18sp"
+              android:visibility="gone" />
+
+      <TextView
+              android:id="@+id/end_text"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text=""
+              android:textAlignment="center"
+              android:textSize="18sp"
+              android:visibility="gone" />
+
+    </LinearLayout>
+  </ScrollView>
+</LinearLayout>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical" android:layout_margin="5dp">
+
+  <com.atakmap.android.pulsetool.plugin.ui.settings.widget.SettingsSpinner
+    android:id="@+id/config_language"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/medium_vertical_margin"
+    android:paddingTop="@dimen/medium_vertical_margin" />
+
+  <com.atakmap.android.pulsetool.plugin.ui.settings.widget.CustomAutoValueListView
+    android:id="@+id/custom_goals_list"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" />
+
+  <TextView
+    android:id="@+id/custom_stride_length_header"
+    style="@style/SubHeadingStyle"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/custom_stride_length" />
+
+
+  <com.atakmap.android.pulsetool.plugin.ui.settings.widget.CustomAutoValueView
+    android:id="@+id/custom_stride_walking"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:inputType="numberDecimal" />
+
+  <com.atakmap.android.pulsetool.plugin.ui.settings.widget.CustomAutoValueView
+    android:id="@+id/custom_stride_running"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:inputType="numberDecimal" />
+
+</LinearLayout>

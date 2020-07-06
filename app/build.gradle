@@ -1,0 +1,279 @@
+import java.util.regex.Matcher
+import java.util.regex.Pattern
+
+def id = 'com.atakmap.android.pulsetool.plugin'
+ext.id = id
+
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 29
+
+
+
+    defaultConfig {
+        applicationId id
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt')
+        }
+        debug {
+            minifyEnabled false
+        }
+    }
+
+
+
+
+    lintOptions {
+        abortOnError false
+    }
+    aaptOptions {
+        cruncherEnabled = false
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+repositories {
+    maven {url "https://jitpack.io"}
+    flatDir {
+        dirs 'libs'
+    }
+}
+dependencies {
+    implementation(name: 'garmin-health-sdk', ext: 'aar') {
+        exclude group: 'com.google.protobuf'
+    }
+
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "androidx.appcompat:appcompat:1.1.0"
+    implementation "androidx.constraintlayout:constraintlayout:1.1.3"
+    implementation "com.google.android.material:material:1.2.0-alpha04"
+    implementation "androidx.legacy:legacy-support-v4:1.0.0"
+    implementation "com.github.PhilJay:MPAndroidChart:v2.1.6"
+    implementation "androidx.cardview:cardview:1.0.0"
+    implementation "com.facebook.stetho:stetho:1.5.1"
+
+
+    //// START SDK DEPENDENCIES ////
+
+    implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.72'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.9.0'
+    implementation 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.7'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.google.protobuf:protobuf-lite:3.0.1'
+    implementation 'com.google.guava:guava:28.0-android'
+    implementation 'net.danlew:android.joda:2.9.9.2'
+    implementation "androidx.room:room-runtime:2.2.3"
+    implementation "androidx.room:room-guava:2.2.3"
+    implementation 'org.slf4j:slf4j-api:1.7.25'
+    implementation 'com.github.tony19:logback-android:1.1.1-12'
+    implementation 'net.zetetic:android-database-sqlcipher:4.3.0'
+    //// END SDK DEPENDENCIES ////
+}
+
+// TASK TO UPDATE LICENSE DETAILS. DO NOT TOUCH
+task loadLicense {
+
+    File licenseDirectory = new File("$project.projectDir.path/license")
+
+    if(!licenseDirectory.exists() || !licenseDirectory.isDirectory())
+    {
+        println "License directory does not exist, please create a directory called 'license' under the app root."
+        return
+    }
+
+    List<File> files = new ArrayList<>()
+
+    for(File file : licenseDirectory.listFiles())
+    {
+        if(file.name.substring(0, 1) != '.')
+        {
+            files.add(file)
+        }
+    }
+
+    if(files.size() != 1)
+    {
+        println "Could not load license, please place Garmin Health license, alone, in a directory called 'license' under the app directory."
+        return
+    }
+
+    File licenseFile = files.get(0)
+
+    if(!licenseFile.exists() || licenseFile.isDirectory())
+    {
+        println "License file could not be found."
+        return
+    }
+
+    String licenseString
+    String appId
+
+    String fileName = licenseFile.name
+
+    StringBuilder contentBuilder = new StringBuilder()
+
+    try
+    {
+        BufferedReader br = new BufferedReader(new FileReader(licenseFile.path))
+
+        String sCurrentLine
+
+        while ((sCurrentLine = br.readLine()) != null)
+        {
+            contentBuilder.append(sCurrentLine).append("\n")
+        }
+    }
+    catch (IOException ignored)
+    {
+        println "Failed to read license file."
+        return
+    }
+
+    licenseString = contentBuilder.toString().trim()
+
+    String licensePattern = "[a-zA-Z][a-zA-Z0-9_]*(\\.[a-zA-Z][a-zA-Z0-9_]*)+"
+    Pattern regex = Pattern.compile(licensePattern)
+    Matcher matcher = regex.matcher(fileName)
+
+    if(matcher.find())
+    {
+        appId = matcher.group(0)
+    }
+    else
+    {
+        println "Could not match appId in license file name. Please include applicationId in license name."
+        return
+    }
+
+    if(appId == id)
+    {
+        println "AppId Already Loaded."
+        return
+    }
+
+    if(appId.trim().isEmpty() || licenseString.trim().isEmpty())
+    {
+        println "No Valid App ID Found"
+        return
+    }
+
+    // Filter Source References
+
+    copy {
+        from "src"
+        into "temp/src"
+
+        exclude '**/*.png'
+
+        filter { String line ->
+            if(line.contains(id))
+            {
+                return line.replace(id, appId)
+            }
+            else
+            {
+                return line
+            }
+        }
+    }
+
+    copy {
+        from "src"
+        into "temp/src"
+
+        include '**/*.png'
+    }
+
+    delete "src"
+
+    copy {
+        from "temp/src"
+        into "src"
+    }
+
+    delete "temp/src"
+
+    // Move files to correct package.
+    def idDir = id.replace('.', '/')
+    def appIdDir = appId.replace('.', '/')
+
+    copy {
+        from "src/main/java/$idDir"
+        into "temp/src/main/java/$appIdDir"
+    }
+
+    delete "src/main/java/$idDir"
+
+    copy {
+        from "temp/src/main/java/$appIdDir"
+        into "src/main/java/$appIdDir"
+    }
+
+    delete "temp/src/main/java/$appIdDir"
+
+    // Filter App Id
+
+    copy {
+        include "build.gradle", "src/main/AndroidManifest.xml", "src/main/res/values/strings.xml"
+
+        from project.projectDir.path
+        into "$project.projectDir.path/temp"
+
+        filter { String line ->
+            if(line.contains("manifest") && line.contains("package"))
+            {
+                return line.replace(id, appId)
+            }
+            else if(line.contains("def id") && line.contains(id))
+            {
+                return line.replace(id, appId)
+            }
+            else if(line.contains("standard_license") &&
+                    line.contains("translatable"))
+            {
+                return "  <string name=\"standard_license\" " +
+                        "translatable=\"false\">$licenseString</string>"
+            }
+            else if(line.contains("companion_license") &&
+                    line.contains("translatable"))
+            {
+                return "  <string name=\"companion_license\" " +
+                        "translatable=\"false\">$licenseString</string>"
+            }
+            else
+            {
+                return line
+            }
+        }
+    }
+
+    delete "build.gradle", "src/main/AndroidManifest.xml", "src/main/res/values/strings.xml"
+
+    copy {
+        include "build.gradle", "src/main/AndroidManifest.xml", "src/main/res/values/strings.xml"
+
+        from "$project.projectDir.path/temp"
+        into project.projectDir.path
+    }
+
+    delete "$project.projectDir.path/temp"
+}

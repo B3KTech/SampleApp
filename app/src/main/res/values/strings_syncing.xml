@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name_sample">GH Syncing</string>
+    <string name="time">Date/Time</string>
+    <string name="invalid_custom_settings">Device custom settings are invalid</string>
+    <string name="duration">duration</string>
+    <string name="accelerometer_data">Accelerometer Data:</string>
+    <string name="steps_chart">Steps Chart</string>
+    <string name="xaxis">X-Axis</string>
+    <string name="yaxis">Y-Axis</string>
+    <string name="zaxis">Z-Axis</string>
+
+    <string name="time_sync_frequency">Auto sync time frequency</string>
+    <string name="steps_sync_frequency">Auto sync steps frequency</string>
+
+    <string name="goal_meters_climb">Meters climbed</string>
+
+    <string name="fitness_tab_title">Fitness</string>
+    <string name="stress_level_tab_title">Stress level</string>
+    <string name="empty_fitness_list_message">No fitness data yet!</string>
+
+    <string name="resting_heart_rate">Resting HR</string>
+    <string name="vo2_max">VO2 Max</string>
+
+    <string name="steps">steps</string>
+
+    <string name="stress_level_graph_label">Stress</string>
+    <string name="energy_level_graph_label">Body Battery</string>
+
+    <string name="battery_percentage">battery percentage: %d\%%</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

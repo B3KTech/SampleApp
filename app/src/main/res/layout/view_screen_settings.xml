@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+  <TextView
+    style="@style/CardHeadingStyle"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/screen_settings" />
+
+  <com.atakmap.android.pulsetool.plugin.ui.settings.widget.SettingsSpinner
+    android:id="@+id/config_orientation"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/medium_vertical_margin" />
+
+  <com.atakmap.android.pulsetool.plugin.ui.settings.widget.SettingsSpinner
+    android:id="@+id/screen_mode_spinner"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/medium_vertical_margin" />
+
+  <com.atakmap.android.pulsetool.plugin.ui.settings.widget.SettingsSpinner
+    android:id="@+id/watchface_spinner"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/medium_vertical_margin" />
+
+  <com.atakmap.android.pulsetool.plugin.ui.settings.widget.SettingsSpinner
+    android:id="@+id/config_initial_screen"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/medium_vertical_margin" />
+
+  <com.atakmap.android.pulsetool.plugin.ui.settings.widget.SwitchOptionsView
+    android:id="@+id/config_screen_settings"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" />
+
+  <com.atakmap.android.pulsetool.plugin.ui.settings.widget.SwitchOptionsView
+    android:id="@+id/config_widget_settings"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" />
+
+  <com.atakmap.android.pulsetool.plugin.ui.settings.widget.SwitchOptionsView
+    android:id="@+id/config_apps_settings"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" />
+</LinearLayout>

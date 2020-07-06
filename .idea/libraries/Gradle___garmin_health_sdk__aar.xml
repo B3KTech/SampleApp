@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: :garmin-health-sdk:@aar">
+    <ANNOTATIONS>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e9785e725d665b4acd9b909b94cb903d/garmin-health-sdk/annotations.zip!/" />
+    </ANNOTATIONS>
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e9785e725d665b4acd9b909b94cb903d/garmin-health-sdk/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e9785e725d665b4acd9b909b94cb903d/garmin-health-sdk/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
